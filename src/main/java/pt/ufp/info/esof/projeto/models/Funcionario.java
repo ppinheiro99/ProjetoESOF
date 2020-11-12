@@ -8,4 +8,7 @@ public class Funcionario extends Pessoa {
     public Cargo cargo;
     public List<Tarefa> tarefas = new ArrayList<>();
 
+    public void consultarPrazoTarefa(Tarefa tarefa){
+
+    }
 }
