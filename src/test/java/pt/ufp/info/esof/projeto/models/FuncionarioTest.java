@@ -8,5 +8,6 @@ class FuncionarioTest {
 
     @Test
     void consultarPrazoTarefa() {
+        System.out.println("teste");
     }
 }
