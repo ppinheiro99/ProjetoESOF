@@ -11,10 +11,11 @@ import java.util.List;
 @Setter
 public class Funcionario extends Pessoa {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
     private Cargo cargo;
-    @OneToMany
+    @OneToMany(mappedBy = "funcionario",cascade = CascadeType.ALL)
     private List<Tarefa> tarefas = new ArrayList<>();
 
     public void consultarPrazoTarefa(Tarefa tarefa){
