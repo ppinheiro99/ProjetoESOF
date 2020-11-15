@@ -1,22 +1,21 @@
 package pt.ufp.info.esof.projeto.models;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-@Getter
-@Setter
-public class Funcionario{
+public class Funcionario extends Pessoa {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String nome;
+
     @ManyToOne
     private Cargo cargo;
-    @OneToMany(mappedBy = "funcionario",cascade = CascadeType.ALL)
+
+    @OneToMany
     private List<Tarefa> tarefas = new ArrayList<>();
+
+
 
 }
