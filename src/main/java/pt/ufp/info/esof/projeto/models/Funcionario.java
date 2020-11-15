@@ -9,16 +9,14 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Funcionario extends Pessoa {
+public class Funcionario{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String nome;
     @ManyToOne
     private Cargo cargo;
     @OneToMany(mappedBy = "funcionario",cascade = CascadeType.ALL)
     private List<Tarefa> tarefas = new ArrayList<>();
 
-    public void consultarPrazoTarefa(Tarefa tarefa){
-
-    }
 }
