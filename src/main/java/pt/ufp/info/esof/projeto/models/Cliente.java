@@ -14,7 +14,7 @@ public class Cliente {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   private String nome;
-  @OneToMany(mappedBy = "cliente")
+  @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
   private List<Projeto> projetos = new ArrayList<>();
 
   public void criaProjeto(String nome){

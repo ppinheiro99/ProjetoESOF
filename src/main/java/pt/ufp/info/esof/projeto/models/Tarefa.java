@@ -14,7 +14,7 @@ public class Tarefa {
   private long id;
   private String nome;
   private int duracao;
-  @ManyToOne
+  @OneToOne
   private Funcionario funcionario;
   @ManyToOne
   private Projeto projeto;

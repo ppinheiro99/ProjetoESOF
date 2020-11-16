@@ -16,10 +16,10 @@ public class Projeto {
     private long id;
     private String nome;
     private Date duracao;
-    @OneToOne
-    private Gestor gestorDoProjeto;
     @OneToMany(mappedBy = "projeto",cascade = CascadeType.ALL)
     private List<Tarefa> tarefas = new ArrayList<>();
     @ManyToOne
     private Cliente cliente;
+    @ManyToOne
+    private Gestor gestor;
 }
