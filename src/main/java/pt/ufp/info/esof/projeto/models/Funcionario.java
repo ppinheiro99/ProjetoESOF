@@ -3,6 +3,8 @@ package pt.ufp.info.esof.projeto.models;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -12,8 +14,10 @@ public class Funcionario{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
-    @ManyToOne
-    private Cargo cargo; // Como implementar os cargos?
-    @OneToOne
-    private Tarefa tarefas;
+    private enum Cargo{
+        desenvolvedorJunior,analistaJunior,desenvolvedorSenior,analistaSenior
+    }
+    private float valorHora;
+    @OneToMany(mappedBy = "funcionario",cascade = CascadeType.ALL)
+    private List<Tarefa> tarefas = new ArrayList<>();
 }
