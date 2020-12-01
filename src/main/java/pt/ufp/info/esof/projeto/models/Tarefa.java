@@ -13,10 +13,12 @@ public class Tarefa {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   private String nome;
-  private int duracaoHoras;
   @ManyToOne
-  private Funcionario funcionario;
+  private Empregado empregado;
   @ManyToOne
   private Projeto projeto;
-
+  @OneToOne
+  private TempoEfetivo tempoEfetivo;
+  @OneToOne
+  private TempoPrevisto tempoPrevisto;
 }

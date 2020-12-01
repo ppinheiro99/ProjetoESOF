@@ -16,12 +16,4 @@ public class Cliente {
   private String nome;
   @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
   private List<Projeto> projetos = new ArrayList<>();
-
-  public void criaProjeto(String nome){
-    Projeto p = new Projeto();
-    p.setNome(nome);
-    if(!projetos.contains(p)){
-      projetos.add(p);
-    }
-  }
 }

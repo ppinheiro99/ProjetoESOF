@@ -9,15 +9,12 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Funcionario{
+public class Empregado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
-    private enum Cargo{
-        desenvolvedorJunior,analistaJunior,desenvolvedorSenior,analistaSenior
-    }
-    private float valorHora;
-    @OneToMany(mappedBy = "funcionario",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "empregado",cascade = CascadeType.ALL)
     private List<Tarefa> tarefas = new ArrayList<>();
+    private Cargo cargo;
 }

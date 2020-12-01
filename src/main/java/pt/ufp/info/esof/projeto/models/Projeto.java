@@ -17,10 +17,23 @@ public class Projeto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
-    private int prazoHoras;
-    private double custo;
     @OneToMany(mappedBy = "projeto",cascade = CascadeType.ALL)
     private List<Tarefa> tarefas = new ArrayList<>();
     @ManyToOne
     private Cliente cliente;
+
+    public void estadoDoProjeto(){ // vai ser um enum
+    }
+
+    public float custoProjeto(){
+        return 0;
+    }
+
+    public  float duracaoPrevistaHoras(){
+        return 0;
+    }
+
+    public  float duracaoEfetivaHoras(){
+        return 0;
+    }
 }
