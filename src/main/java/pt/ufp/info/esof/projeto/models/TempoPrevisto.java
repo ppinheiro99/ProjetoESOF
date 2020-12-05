@@ -12,6 +12,7 @@ public class TempoPrevisto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private float tempoPrevistoHoras;
     @OneToOne
     private Tarefa tarefa;
 }

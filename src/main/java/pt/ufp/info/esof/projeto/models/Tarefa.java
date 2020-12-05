@@ -21,4 +21,17 @@ public class Tarefa {
   private TempoEfetivo tempoEfetivo;
   @OneToOne
   private TempoPrevisto tempoPrevisto;
+
+  public boolean registaConclusaoTarefa(){
+    if(tempoEfetivo.getTempoEfetivoHoras() == tempoPrevisto.getTempoPrevistoHoras()){
+      return true;
+    }
+    return false;
+  }
+  public float custoPrevistoTarefa(){
+    return empregado.valorHora()*tempoPrevisto.getTempoPrevistoHoras();
+  }
+  public float custoEfetivoTarefa(){
+    return tempoPrevisto.getTempoPrevistoHoras() * empregado.valorHora();
+  }
 }

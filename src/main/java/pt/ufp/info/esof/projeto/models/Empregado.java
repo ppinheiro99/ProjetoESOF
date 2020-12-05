@@ -17,4 +17,8 @@ public class Empregado {
     @OneToMany(mappedBy = "empregado",cascade = CascadeType.ALL)
     private List<Tarefa> tarefas = new ArrayList<>();
     private Cargo cargo;
+
+    public int valorHora(){
+        return cargo.valorHora;
+    }
 }

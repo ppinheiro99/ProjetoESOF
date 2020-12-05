@@ -17,23 +17,52 @@ public class Projeto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
+    private enum estadosProjeto{ // Nao sei se é bem isto ( provavelmente nao )
+        Concluido,
+        NaoConluido,
+    }
     @OneToMany(mappedBy = "projeto",cascade = CascadeType.ALL)
     private List<Tarefa> tarefas = new ArrayList<>();
     @ManyToOne
     private Cliente cliente;
 
-    public void estadoDoProjeto(){ // vai ser um enum
+    public estadosProjeto estadoDoProjeto(){ // vai ser um enum
+        for (Tarefa t:this.tarefas) {
+            if(!t.registaConclusaoTarefa()){
+                return estadosProjeto.NaoConluido;
+            }
+        }
+        return estadosProjeto.Concluido;
     }
 
-    public float custoProjeto(){
-        return 0;
+    public float custoPrevistoProjeto(){
+        float custo = 0;
+        for (Tarefa t:this.tarefas) {
+            custo = custo + t.custoPrevistoTarefa();
+        }
+        return custo;
+    }
+    public float custoEfetivoProjeto(){
+        float custo = 0;
+        for (Tarefa t:this.tarefas) {
+            custo = custo + t.custoEfetivoTarefa();
+        }
+        return custo;
     }
 
     public  float duracaoPrevistaHoras(){
-        return 0;
+        float duracao = 0;
+        for (Tarefa t:this.tarefas) {
+            duracao = duracao + t.getTempoPrevisto().getTempoPrevistoHoras();
+        }
+        return duracao;
     }
 
     public  float duracaoEfetivaHoras(){
-        return 0;
+        float duracao = 0;
+        for (Tarefa t:this.tarefas) {
+            duracao = duracao + t.getTempoEfetivo().getTempoEfetivoHoras();
+        }
+        return duracao;
     }
 }
