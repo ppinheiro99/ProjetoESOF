@@ -1,8 +1,9 @@
 package pt.ufp.info.esof.projeto.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import pt.ufp.info.esof.projeto.models.Projeto;
-
-public interface TempoPrevistoRepository extends CrudRepository<Projeto,Long> {
-    Projeto findById(long id);
+import org.springframework.stereotype.Repository;
+import pt.ufp.info.esof.projeto.models.TempoPrevisto;
+@Repository
+public interface TempoPrevistoRepository extends CrudRepository<TempoPrevisto,Long> {
+    TempoPrevisto findById(long id);
 }

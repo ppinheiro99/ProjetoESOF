@@ -23,10 +23,7 @@ public class Tarefa {
   private TempoPrevisto tempoPrevisto;
 
   public boolean registaConclusaoTarefa(){
-    if(tempoEfetivo.getTempoEfetivoHoras() == tempoPrevisto.getTempoPrevistoHoras()){
-      return true;
-    }
-    return false;
+    return tempoEfetivo.getTempoEfetivoHoras() == tempoPrevisto.getTempoPrevistoHoras();
   }
   public float custoPrevistoTarefa(){
     return empregado.valorHora()*tempoPrevisto.getTempoPrevistoHoras();

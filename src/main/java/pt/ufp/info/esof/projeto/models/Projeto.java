@@ -26,6 +26,13 @@ public class Projeto {
     @ManyToOne
     private Cliente cliente;
 
+    public void adicionarTarefas(Tarefa t){
+        if(!tarefas.contains(t)){
+            tarefas.add(t);
+            t.setProjeto(this);
+        }
+    }
+
     public estadosProjeto estadoDoProjeto(){ // vai ser um enum
         for (Tarefa t:this.tarefas) {
             if(!t.registaConclusaoTarefa()){
