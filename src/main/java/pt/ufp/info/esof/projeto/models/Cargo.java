@@ -1,19 +1,17 @@
 package pt.ufp.info.esof.projeto.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@Entity
-public class Cargo {
-  @Id
-  private long id;
-
-  private String nome;
-  private int valor;
-
-  @OneToMany
-  private List<Funcionario> funcionarios = new ArrayList<>();
+@JsonIdentityInfo(property = "id", generator = ObjectIdGenerators.PropertyGenerator.class,scope = Projeto.class)
+public enum Cargo {
+    desenvolvedorJunior(10),
+    analistaJunior(20),
+    desenvolvedorSenior(40),
+    analistaSenior(80),
+    ;
+    public final int valorHora;
+    Cargo(int valorHora){
+        this.valorHora = valorHora;
+    }
 }
