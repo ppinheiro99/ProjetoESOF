@@ -1,13 +1,17 @@
 package pt.ufp.info.esof.projeto.models;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-public class Cargo {
-
-  public String nome;
-
-  public int valor;
-  public List<Funcionario> funcionarios = new ArrayList<>();
-
+@JsonIdentityInfo(property = "id", generator = ObjectIdGenerators.PropertyGenerator.class,scope = Projeto.class)
+public enum Cargo {
+    desenvolvedorJunior(10),
+    analistaJunior(20),
+    desenvolvedorSenior(40),
+    analistaSenior(80),
+    ;
+    public final int valorHora;
+    Cargo(int valorHora){
+        this.valorHora = valorHora;
+    }
 }
