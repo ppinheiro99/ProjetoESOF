@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
+@ToString
 @JsonIdentityInfo(property = "id", generator = ObjectIdGenerators.PropertyGenerator.class,scope = Projeto.class)
 public class Tarefa {
   @Id
@@ -19,13 +21,14 @@ public class Tarefa {
   @ManyToOne
   private Empregado empregado;
   @ManyToOne
-  private Projeto projeto;
+  @ToString.Exclude private Projeto projeto;
   @OneToOne
   private TempoEfetivo tempoEfetivo;
   @OneToOne
   private TempoPrevisto tempoPrevisto;
 
   private boolean concluida;
+
 
   public boolean registaConclusaoTarefa(){
     return tempoEfetivo.getTempoEfetivoHoras() == tempoPrevisto.getTempoPrevistoHoras();
@@ -36,8 +39,11 @@ public class Tarefa {
   public float custoEfetivoTarefa(){
     return tempoPrevisto.getTempoPrevistoHoras() * empregado.valorHora();
   }
-  public int percentagemConclusao(){return (int)(tempoPrevisto.getTempoPrevistoHoras()/tempoEfetivo.getTempoEfetivoHoras()*100);}
+  public int percentagemConclusao(){return (int)(tempoEfetivo.getTempoEfetivoHoras()/(tempoPrevisto.getTempoPrevistoHoras())*100);}
+
+
   public void conluir_tarefa(){this.concluida=true;}
+
 
 
 

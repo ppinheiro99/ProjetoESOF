@@ -42,28 +42,42 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
         Tarefa t1 = new Tarefa();
         t1.setNome("Tarefa1");
 
-//        TempoPrevisto tprevisto = new TempoPrevisto(); // esta classe nao está a fazer nada (discutir se vamos ou nao tirá-la)
-//        tprevisto.setTempoPrevistoHoras(8);
-//        tprevisto.setTarefa(t1);
-//        tempoPrevistoRepository.save(tprevisto);
-//
-//        TempoEfetivo tefetivo = new TempoEfetivo();
-//        tefetivo.setTempoEfetivoHoras(3);
-//        tefetivo.setTarefa(t1);
-//        tempoEfetivoRepository.save(tefetivo);
-//
-//        t1.setTempoEfetivo(tefetivo);
-//        t1.setTempoPrevisto(tprevisto);
+        TempoPrevisto tprevisto = new TempoPrevisto(); // esta classe nao está a fazer nada (discutir se vamos ou nao tirá-la)
+        tprevisto.setTempoPrevistoHoras(8);
+        tprevisto.setTarefa(t1);
+        //tempoPrevistoRepository.save(tprevisto);
+
+       TempoEfetivo tefetivo = new TempoEfetivo();
+       tefetivo.setTempoEfetivoHoras(3);
+       tefetivo.setTarefa(t1);
+      // tempoEfetivoRepository.save(tefetivo);
+
+        t1.setTempoEfetivo(tefetivo);
+        t1.setTempoPrevisto(tprevisto);
+
+
+
 
         p1.setCliente(c1); // associa projeto ao cliente
         c1.getProjetos().add(p1); // associa cliente ao projeto
         p1.adicionarTarefas(t1); // associa o projeto à tarefa e vice-versa
-        this.projetoRepository.save(p1);
+      //  this.projetoRepository.save(p1);
 
         t1.setEmpregado(e1); // associa tarefa ao empregado
         e1.getTarefas().add(t1); // associa empregado à tarefa
-        this.tarefaRepository.save(t1);
+        //this.tarefaRepository.save(t1);
 
         System.out.println("\n" + "valorHora: "+ e1.valorHora()+"\n");
+       /*
+        Projeto p = new Projeto();
+      Tarefa t = new Tarefa();
+        t.setNome("tarefa1");
+        p.getTarefas().add(t);
+        System.out.println( p.estadoDoProjeto());
+
+        System.out.println(p);
+*/
+        c1.getProjetos().get(0).mostrarProgresso();
+
     }
 }
