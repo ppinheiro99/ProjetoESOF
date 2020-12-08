@@ -15,3 +15,4 @@ public enum Cargo {
         this.valorHora = valorHora;
     }
 }
+

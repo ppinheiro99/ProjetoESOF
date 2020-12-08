@@ -25,6 +25,8 @@ public class Tarefa {
   @OneToOne
   private TempoPrevisto tempoPrevisto;
 
+  private boolean concluida;
+
   public boolean registaConclusaoTarefa(){
     return tempoEfetivo.getTempoEfetivoHoras() == tempoPrevisto.getTempoPrevistoHoras();
   }
@@ -34,4 +36,13 @@ public class Tarefa {
   public float custoEfetivoTarefa(){
     return tempoPrevisto.getTempoPrevistoHoras() * empregado.valorHora();
   }
+  public int percentagemConclusao(){return (int)(tempoPrevisto.getTempoPrevistoHoras()/tempoEfetivo.getTempoEfetivoHoras()*100);}
+  public void conluir_tarefa(){this.concluida=true;}
+
+
+
+
+
+
+
 }
