@@ -74,14 +74,6 @@ public class Projeto {
         return (int) (( this.duracaoEfetivaHoras()/this.duracaoPrevistaHoras()) * 100);
     }
 
-
-   /* public void conluir_tarefa() {
-        for (Tarefa t : this.tarefas)
-            if (!t.isConcluida()) return;
-
-        this.estadoDoProjeto();
-    }*/
-
     private estadosProjeto estadoDoProjeto() { // vai ser um enum
         for (Tarefa t : this.tarefas) {
             if (!t.registaConclusaoTarefa()) {
@@ -97,21 +89,6 @@ public class Projeto {
         for (Tarefa t:this.getTarefas()) {
             System.out.println(t);
         }
-    }
-
-
-
-    public static void main(String[] args) {
-
-   /*
-        Projeto p = new Projeto();
-      Tarefa t = new Tarefa();
-        t.setNome("tarefa1");
-        p.getTarefas().add(t);
-        System.out.println( p.estadoDoProjeto());
-
-        System.out.println(p);
-*/
     }
 
 }
