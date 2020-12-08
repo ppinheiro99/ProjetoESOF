@@ -19,4 +19,31 @@ public class Cliente {
   private String nome;
   @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
   private List<Projeto> projetos = new ArrayList<>();
+
+
+  public void consultarCustoProjeto(){
+    int i = 0;
+    while (i<projetos.size()){
+      System.out.println(projetos.get(i).custoPrevistoProjeto());
+      i++;
+    }
+  }
+
+  public void consultarPrazoProjeto(){
+    int i = 0;
+    while (i<projetos.size()){
+      System.out.println(projetos.get(i).duracaoPrevistaHoras() + "\n");
+      i++;
+    }
+  }
+
+  public void consultarEstadoProjeto(){
+    int i = 0;
+    while (i<projetos.size()){
+      System.out.println(projetos.get(i).estadoDoProjeto());
+      i++;
+    }
+  }
+
+
 }
