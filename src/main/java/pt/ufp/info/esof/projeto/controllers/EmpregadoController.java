@@ -1,5 +1,6 @@
 package pt.ufp.info.esof.projeto.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +13,11 @@ import java.util.Optional;
 @RequestMapping("/empregado")
 public class EmpregadoController {
     private final EmpregadoRepository empregadoRepository;
-
+    @Autowired
     public EmpregadoController(EmpregadoRepository empregadoRepository) {
         this.empregadoRepository = empregadoRepository;
     }
-
+    // retorno uma resposta com o código 200 (responsiveEntity.ok)
     @GetMapping()
     public ResponseEntity<Iterable<Empregado>> getAllEmpregados(){
         return ResponseEntity.ok(empregadoRepository.findAll());
@@ -26,7 +27,8 @@ public class EmpregadoController {
     public ResponseEntity<Empregado> getEmpregadoById(@PathVariable Long id){
         Optional<Empregado> optionalEmpregado = empregadoRepository.findById(id);
         if(optionalEmpregado.isPresent()){
-            return ResponseEntity.ok(optionalEmpregado.get());
+            Empregado empregado = optionalEmpregado.get();
+            return ResponseEntity.ok(empregado);
         }
         return ResponseEntity.notFound().build();
     }

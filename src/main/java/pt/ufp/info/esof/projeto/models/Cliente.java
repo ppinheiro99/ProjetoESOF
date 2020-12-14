@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@JsonIdentityInfo(property = "id", generator = ObjectIdGenerators.PropertyGenerator.class,scope = Projeto.class)
 public class Cliente {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
