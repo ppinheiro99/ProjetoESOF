@@ -13,7 +13,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@ToString
 @JsonIdentityInfo(property = "id", generator = ObjectIdGenerators.PropertyGenerator.class, scope = Projeto.class)
 public class Projeto {
     @Id
@@ -21,7 +20,7 @@ public class Projeto {
     private long id;
     private String nome;
 
-    private enum estadosProjeto { // Nao sei se é bem isto ( provavelmente nao )
+    private enum EstadosProjeto {
         Concluido,
         NaoConluido,
     }
@@ -74,18 +73,20 @@ public class Projeto {
         return (int) (( this.duracaoEfetivaHoras()/this.duracaoPrevistaHoras()) * 100);
     }
 
-    private estadosProjeto estadoDoProjeto() { // vai ser um enum
+    public EstadosProjeto estadoDoProjeto() {
         for (Tarefa t : this.tarefas) {
             if (!t.registaConclusaoTarefa()) {
-                return estadosProjeto.NaoConluido;
+                return EstadosProjeto.NaoConluido;
             }
         }
-        return estadosProjeto.Concluido;
+        return EstadosProjeto.Concluido;
     }
 
     public void mostrarProgresso(){
         System.out.println(this);
         System.out.println("Projeto "+this.estadoDoProjeto()+" com "+this.percentagemConclusao()+"%");
+
+//        tarefas.stream().map(Tarefa::getNome).collect(Collectors.toList());
         for (Tarefa t:this.getTarefas()) {
             System.out.println(t);
         }

@@ -10,18 +10,22 @@ import pt.ufp.info.esof.projeto.repositories.*;
 @Component
 public class Inicializacao implements ApplicationListener<ContextRefreshedEvent> {
 
+    private final ClienteRepository clienteRepository;
+    private final EmpregadoRepository empregadoRepository;
+    private final ProjetoRepository projetoRepository;
+    private final TarefaRepository tarefaRepository;
+    private final TempoEfetivoRepository tempoEfetivoRepository;
+    private final TempoPrevistoRepository tempoPrevistoRepository;
+
     @Autowired
-    private ClienteRepository clienteRepository;
-    @Autowired
-    private EmpregadoRepository empregadoRepository;
-    @Autowired
-    private ProjetoRepository projetoRepository;
-    @Autowired
-    private TarefaRepository tarefaRepository;
-    @Autowired
-    private TempoEfetivoRepository tempoEfetivoRepository;
-    @Autowired
-    private TempoPrevistoRepository tempoPrevistoRepository;
+    public Inicializacao(ClienteRepository clienteRepository, EmpregadoRepository empregadoRepository, ProjetoRepository projetoRepository, TarefaRepository tarefaRepository, TempoEfetivoRepository tempoEfetivoRepository, TempoPrevistoRepository tempoPrevistoRepository) {
+        this.clienteRepository = clienteRepository;
+        this.empregadoRepository = empregadoRepository;
+        this.projetoRepository = projetoRepository;
+        this.tarefaRepository = tarefaRepository;
+        this.tempoEfetivoRepository = tempoEfetivoRepository;
+        this.tempoPrevistoRepository = tempoPrevistoRepository;
+    }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -47,37 +51,34 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
         tprevisto.setTarefa(t1);
         //tempoPrevistoRepository.save(tprevisto);
 
-       TempoEfetivo tefetivo = new TempoEfetivo();
-       tefetivo.setTempoEfetivoHoras(3);
-       tefetivo.setTarefa(t1);
-      // tempoEfetivoRepository.save(tefetivo);
+        TempoEfetivo tefetivo = new TempoEfetivo();
+        tefetivo.setTempoEfetivoHoras(3);
+        tefetivo.setTarefa(t1);
+        //tempoEfetivoRepository.save(tefetivo);
 
         t1.setTempoEfetivo(tefetivo);
         t1.setTempoPrevisto(tprevisto);
 
-
-
-
         p1.setCliente(c1); // associa projeto ao cliente
         c1.getProjetos().add(p1); // associa cliente ao projeto
         p1.adicionarTarefas(t1); // associa o projeto à tarefa e vice-versa
-      //  this.projetoRepository.save(p1);
+        //this.projetoRepository.save(p1);
 
         t1.setEmpregado(e1); // associa tarefa ao empregado
         e1.getTarefas().add(t1); // associa empregado à tarefa
         //this.tarefaRepository.save(t1);
 
         System.out.println("\n" + "valorHora: "+ e1.valorHora()+"\n");
-       /*
-        Projeto p = new Projeto();
-      Tarefa t = new Tarefa();
-        t.setNome("tarefa1");
-        p.getTarefas().add(t);
-        System.out.println( p.estadoDoProjeto());
+        /*
+            Projeto p = new Projeto();
+            Tarefa t = new Tarefa();
+            t.setNome("tarefa1");
+            p.getTarefas().add(t);
+            System.out.println( p.estadoDoProjeto());
 
-        System.out.println(p);
-*/
+            System.out.println(p);
+       */
+
         c1.getProjetos().get(0).mostrarProgresso();
-
     }
 }

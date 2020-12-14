@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@ToString
 @JsonIdentityInfo(property = "id", generator = ObjectIdGenerators.PropertyGenerator.class,scope = Projeto.class)
 public class Tarefa {
   @Id
@@ -21,7 +20,7 @@ public class Tarefa {
   @ManyToOne
   private Empregado empregado;
   @ManyToOne
-  @ToString.Exclude private Projeto projeto;
+  private Projeto projeto;
   @OneToOne
   private TempoEfetivo tempoEfetivo;
   @OneToOne
